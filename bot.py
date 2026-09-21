@@ -101,5 +101,5 @@ async def main():
         print(f"[*] Sleeping {CHECK_INTERVAL_SECONDS} seconds...")
         await asyncio.sleep(CHECK_INTERVAL_SECONDS)
 
-if name == "main":
+
     asyncio.run(main())
