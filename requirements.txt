@@ -1,4 +1,4 @@
-requiinstaloader
+instaloader
 python-telegram-bot==20.8
 requests
-rements.txt
+
