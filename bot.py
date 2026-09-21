@@ -58,16 +58,17 @@ def clean_and_customize_caption(caption):
 
 async def process_and_send():
     if not TELEGRAM_BOT_TOKEN:
-        print("[!] Error: TELEGRAM_BOT_TOKEN not found in Environment Variables", flush=True)
+        print("[!] Error: TELEGRAM_BOT_TOKEN not found", flush=True)
         return
 
-    bot = Bot(token=TELEGRAM_BOT_TOKEN)
+    bot = Bot(token=GAPGPTMASKTOKENlx60pylyjdrX0X
+    
+    # اصلاح بخش Instaloader: حذف compress_history
     L = instaloader.Instaloader(
         download_pictures=False,
         download_videos=False,
         download_video_thumbnails=False,
-        save_metadata=False,
-        compress_history=False
+        save_metadata=False
     )
 
     print(f"[*] Checking profile: {INSTAGRAM_TARGET_USERNAME}...", flush=True)
@@ -119,4 +120,3 @@ async def main():
         await asyncio.sleep(CHECK_INTERVAL_SECONDS)
 
 asyncio.run(main())
-
