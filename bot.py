@@ -5,16 +5,15 @@ import asyncio
 import instaloader
 from telegram import Bot, InputMediaPhoto, InputMediaVideo
 
-TELEGRAM_BOT_TOKEN = "8550951200:AAH0waHPBa-aXrT5wY7xOXjrBAAXiz-pS7c"
 TELEGRAM_CHANNEL_ID = "@papoosh_charm"
 INSTAGRAM_TARGET_USERNAME = "alacharm_meraj"
 CHECK_INTERVAL_SECONDS = 900
 
 MY_FOOTER_SIGNATURE = """
 👠 کفش چرم طبیعی اعلا
-🛍 جهت سفارش و اطلاعات بیشتر:
+🛍 جهت سفارش و اطلاعات بیشتر: 
 @mch_nsy
-📢 کانال ما:
+📢 کانال ما: 
 @papoosh_charm
 """
 
@@ -49,7 +48,12 @@ def clean_and_customize_caption(caption):
     return final_caption[:1020]
 
 async def process_and_send():
-    bot = Bot(token=GAPGPTMASKTOKENaxon1zl9oe6X1X
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    if not token:
+        print("[!] Error: TELEGRAM_BOT_TOKEN is not set in Render Environment Variables!", flush=True)
+        return
+
+    bot = Bot(token=token)
     L = instaloader.Instaloader(
         download_pictures=False,
         download_videos=False,
