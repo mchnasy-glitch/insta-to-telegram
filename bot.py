@@ -103,3 +103,10 @@ async def main():
 
 
     asyncio.run(main())
+    if True:
+    try:
+        asyncio.run(main())
+    except Exception as fatal:
+        print(f"[FATAL] Crashed: {fatal}", flush=True)
+        raise
+
