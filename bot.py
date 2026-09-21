@@ -1,10 +1,9 @@
 import os
-import time
 import re
 import sqlite3
+import asyncio
 import instaloader
 from telegram import Bot, InputMediaPhoto, InputMediaVideo
-import asyncio
 
 TELEGRAM_BOT_TOKEN = "8550951200:AAH0waHPBa-aXrT5wY7xOXjrBAAXiz-pS7c"
 TELEGRAM_CHANNEL_ID = "@papoosh_charm"
@@ -12,9 +11,11 @@ INSTAGRAM_TARGET_USERNAME = "alacharm_meraj"
 CHECK_INTERVAL_SECONDS = 900
 
 MY_FOOTER_SIGNATURE = """
-shoe shop caption
-Order: @mch_nsy
-Channel: @papoosh_charm
+👠 کفش چرم طبیعی اعلا
+🛍 جهت سفارش و اطلاعات بیشتر:
+@mch_nsy
+📢 کانال ما:
+@papoosh_charm
 """
 
 def init_db():
@@ -48,7 +49,7 @@ def clean_and_customize_caption(caption):
     return final_caption[:1020]
 
 async def process_and_send():
-    bot = Bot(token=TELEGRAM_BOT_TOKEN)
+    bot = Bot(token=GAPGPTMASKTOKENaxon1zl9oe6X1X
     L = instaloader.Instaloader(
         download_pictures=False,
         download_videos=False,
@@ -57,7 +58,7 @@ async def process_and_send():
         compress_history=False
     )
 
-    print(f"[*] Checking profile: {INSTAGRAM_TARGET_USERNAME}...")
+    print(f"[*] Checking profile: {INSTAGRAM_TARGET_USERNAME}...", flush=True)
     try:
         profile = instaloader.Profile.from_username(L.context, INSTAGRAM_TARGET_USERNAME)
         posts = profile.get_posts()
@@ -67,7 +68,7 @@ async def process_and_send():
             if is_already_posted(shortcode):
                 continue
 
-            print(f"[+] New post: {shortcode}")
+            print(f"[+] New post: {shortcode}", flush=True)
             caption = clean_and_customize_caption(post.caption)
 
             if not post.is_sidecar:
@@ -88,25 +89,18 @@ async def process_and_send():
                     await bot.send_media_group(chat_id=TELEGRAM_CHANNEL_ID, media=media_group)
 
             mark_as_posted(shortcode)
-            print(f"[OK] Posted: {shortcode}")
+            print(f"[OK] Posted: {shortcode}", flush=True)
             await asyncio.sleep(5)
 
     except Exception as e:
-        print(f"[!] Error: {e}")
+        print(f"[!] Error: {e}", flush=True)
 
 async def main():
     init_db()
+    print("[*] Bot started successfully!", flush=True)
     while True:
         await process_and_send()
-        print(f"[*] Sleeping {CHECK_INTERVAL_SECONDS} seconds...")
+        print(f"[*] Sleeping {CHECK_INTERVAL_SECONDS} seconds...", flush=True)
         await asyncio.sleep(CHECK_INTERVAL_SECONDS)
 
-
-    asyncio.run(main())
-    if True:
-    try:
-        asyncio.run(main())
-    except Exception as fatal:
-        print(f"[FATAL] Crashed: {fatal}", flush=True)
-        raise
-
+asyncio.run(main())
