@@ -7,10 +7,7 @@ from telegram import Bot, InputMediaPhoto, InputMediaVideo
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 
------------------ تنظیمات -----------------
-اگر متغیر در رندر ست نشده بود، مقدار زیر استفاده می‌شود:
-TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "8550951200:AAH0waHPBa-aXrT5wY7xOXjrBAAXiz-pS7c
-")
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHANNEL_ID = "@papoosh_charm
 "
 INSTAGRAM_TARGET_USERNAME = "alacharm_meraj"
@@ -18,13 +15,13 @@ CHECK_INTERVAL_SECONDS = 900
 
 MY_FOOTER_SIGNATURE = """
 👠 کفش چرم طبیعی اعلا
-🛍 جهت سفارش و اطلاعات بیشتر: @mch_nsy
-📢 کانال ما: @papoosh_charm
+🛍 جهت سفارش و اطلاعات بیشتر:
+@mch_nsy
+📢 کانال ما: 
+@papoosh_charm
 
 """
--------------------------------------------
 
-وب‌سرور سبک برای راضی نگه داشتن رندر و جلوگیری از خطای Port Scan
 class SimpleHealthCheckHandler(BaseHTTPRequestHandler):
 def do_GET(self):
 self.send_response(200)
@@ -34,7 +31,7 @@ self.wfile.write(b"Bot is active and running!")
 def start_health_server():
 port = int(os.environ.get("PORT", 8080))
 server = HTTPServer(("0.0.0.0", port), SimpleHealthCheckHandler)
-print(f"[*] Web health server listening on port {port}...", flush=True)
+print(f"[*] Health server listening on port {port}", flush=True)
 server.serve_forever()
 
 def init_db():
@@ -68,11 +65,11 @@ final_caption = f"{cleaned.strip()}\n\n{MY_FOOTER_SIGNATURE.strip()}"
 return final_caption[:1020]
 
 async def process_and_send():
-if not TELEGRAM_BOT_TOKEN or TELEGRAM_BOT_TOKEN == "GAPGPTMASKTOKENym7chv06b7rX1X":
-print("[!] Error: Bot token is missing or not set properly!", flush=True)
+if not TELEGRAM_BOT_TOKEN:
+print("[!] Error: TELEGRAM_BOT_TOKEN not found in Environment Variables", flush=True)
 return
 
-bot = Bot(token=GAPGPTMASKTOKENym7chv06b7rX2X
+bot = Bot(token=GAPGPTMASKTOKEN82h8pk33u4X0X
 L = instaloader.Instaloader(
 download_pictures=False,
 download_videos=False,
@@ -120,8 +117,6 @@ print(f"[!] Instagram error: {e}", flush=True)
 
 async def main():
 init_db()
-
-# اجرای وب‌سرور در ترد مجزا تا رندر تایید لایو بودن بدهد
 health_thread = threading.Thread(target=start_health_server, daemon=True)
 health_thread.start()
 
@@ -132,4 +127,5 @@ print(f"[*] Sleeping {CHECK_INTERVAL_SECONDS} seconds...", flush=True)
 await asyncio.sleep(CHECK_INTERVAL_SECONDS)
 
 asyncio.run(main())
+
 
