@@ -61,9 +61,8 @@ async def process_and_send():
         print("[!] Error: TELEGRAM_BOT_TOKEN not found", flush=True)
         return
 
-    bot = Bot(token=GAPGPTMASKTOKENlx60pylyjdrX0X
+    bot = Bot(token=GAPGPTMASKTOKEN9o9bieq11vuX0X
     
-    # اصلاح بخش Instaloader: حذف compress_history
     L = instaloader.Instaloader(
         download_pictures=False,
         download_videos=False,
