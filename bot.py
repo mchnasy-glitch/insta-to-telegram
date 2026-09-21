@@ -70,9 +70,9 @@ async def process_and_send():
         compress_history=False
     )
 
-    print(f"[*] Checking profile: {INSTAGRAM_TARGET_USERNAME.is_sidecar:
-                if post.is_video:
-                    await bot.send_video(L.context, INSTAGRAM_TARGET_USERNAME)
+    print(f"[*] Checking profile: {INSTAGRAM_TARGET_USERNAME}...", flush=True)
+    try:
+        profile = instaloader.Profile.from_username(L.context, INSTAGRAM_TARGET_USERNAME)
         posts = profile.get_posts()
 
         for post in list(posts)[:3]:
@@ -119,3 +119,4 @@ async def main():
         await asyncio.sleep(CHECK_INTERVAL_SECONDS)
 
 asyncio.run(main())
+
