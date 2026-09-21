@@ -8,7 +8,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHANNEL_ID = "@papoosh_charm
+TELEGRAM_CHANNEL_ID = "@papoosh_charm"
 "
 INSTAGRAM_TARGET_USERNAME = "alacharm_meraj"
 CHECK_INTERVAL_SECONDS = 900
